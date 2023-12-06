@@ -1,2 +1,2 @@
 import pandas as pd
-data = pd.read_csv("your_file.csv")
+data = pd.read_csv("titanic.csv")
