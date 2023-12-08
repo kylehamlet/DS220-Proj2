@@ -1,6 +1,5 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from scipy.stats import chi2_contingency
 
 df = pd.read_csv("titanic.csv")
 #reading the csv file
