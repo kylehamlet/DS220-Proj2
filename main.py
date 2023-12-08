@@ -47,7 +47,22 @@ def query_2():
     print(survival_percentages_age)
     print("As seen above, the highest age class to survive where those within the 0-17 age class. This suggests that children were prioritized when evacuating the Titanic\n")
 
+def query_3():
+    df_embarked_not_null = df.dropna(subset=['Embarked']).copy()
+    #removes rows with missing embarkation data, also creates a copy of the dataset
+
+    #calculate survival percentages by embarkation port
+    survival_percentages_embarked = df_embarked_not_null.groupby(['Embarked', 'Survived']).size().unstack(fill_value=0)
+    survival_percentages_embarked = survival_percentages_embarked.div(survival_percentages_embarked.sum(axis=1), axis=0) * 100
+    survival_percentages_embarked = survival_percentages_embarked.rename({0: 'Did not survive', 1: 'Survived'}, axis=1)
+
+    print("Survival percentages by Embarkation Port:")
+    print(survival_percentages_embarked)
+    print("As seen above, there is a 16 percent higher chance of survival if you embarked from the C Port. This could suggest those passengers were closer to lifevest/evacuation boats\n")
+
 query_1()
 #calling the first query
 query_2()
 #calling the second query
+query_3()
+#calling the third query
